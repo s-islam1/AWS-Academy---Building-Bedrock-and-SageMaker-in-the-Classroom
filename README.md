@@ -1,0 +1,2 @@
+# AWS-Academy---Building-Bedrock-and-SageMaker-in-the-Classroom
+This session examines the transition from professional development to classroom deployment, including curriculum redesign, lab architecture, IAM and security considerations, student projects, challenges encountered, and measurable student outcomes. Attendees will gain a replicable roadmap for integrating applied AI into cloud curricula.  
