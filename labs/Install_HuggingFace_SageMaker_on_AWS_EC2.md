@@ -24,7 +24,7 @@ This lab deploys a complete AI development environment on AWS EC2, including:
 
 ### Configuration
 
-* AMI: Ubuntu 22.04 LTS
+* AMI: Ubuntu 26.04 LTS
 * Instance Type:
 
   * Minimum: `t3.large`
@@ -38,8 +38,11 @@ Allow the following inbound rules:
 | Port | Purpose   |
 | ---- | --------- |
 | 22   | SSH       |
-| 7860 | Gradio UI |
+| 80   | HTTP      |
+| 443  | HTTPS.    |
 | 8888 | Jupyter   |
+| 7860 | Gradio UI |
+
 
 ---
 
@@ -47,7 +50,7 @@ Allow the following inbound rules:
 
 ```bash
 chmod 400 your-key.pem
-ssh -i your-key.pem ubuntu@YOUR_PUBLIC_IP
+ssh -i your-key.pem ubuntu@YOUR_PUBLIC_DNS
 ```
 
 ---
@@ -67,7 +70,16 @@ pip install --upgrade pip
 
 ---
 
-## Step 4: Install Required Libraries
+## Step 4: Create Project Directory
+
+```bash
+mkdir ~/huggingface-playground
+cd ~/huggingface-playground
+```
+
+---
+
+## Step 5: Install Required Libraries
 
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
@@ -75,15 +87,6 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install transformers datasets accelerate
 pip install gradio jupyter
 pip install sentencepiece protobuf safetensors
-```
-
----
-
-## Step 5: Create Project Directory
-
-```bash
-mkdir ~/huggingface-playground
-cd ~/huggingface-playground
 ```
 
 ---
@@ -154,6 +157,8 @@ http://YOUR_PUBLIC_IP:7860
 ## Step 8: Install Jupyter
 
 ```bash
+python3 -m venv huggingface-env
+source huggingface-env/bin/activate
 pip install jupyter jupyterlab
 ```
 
